@@ -28,14 +28,24 @@ import { reactive, ref } from "vue";
 // count.age = count.age + 1;
 // console.log('count', count.title, count.author, count.age);
 
-const count = ref(1);
+// const count = ref(1);
+
 // const increase = () => {
 //   count.value++;
 // }
-const submitForm = () => {
-  // e.preventDefault();
-  count.value++;
-};
+
+
+// const submitForm = () => {
+//   count.value++;
+// };
+
+// const textInput = ref('');
+
+const props = defineProps(['count']);
+const emit = defineEmits(['handle-increase']);
+const onIncrease = () => {
+  emit('handle-increase', 10)
+}; 
 </script>
 
 <template>
@@ -44,12 +54,20 @@ const submitForm = () => {
   <h3>{{ hello }}</h3>
   <h4>{{ array }}</h4>
   {{ c }} -->
-  <form @submit.prevent="submitForm">
+
+  <!-- <form @submit.prevent="submitForm">
     <div>Count: {{ count }}</div>
     <input type="text" v-model="count">
-    <!-- <button v-on:click="increase">Increase</button> -->
     <button type="submit">Increase</button>
-  </form>
+  </form> -->
+
+  <!-- <div>Text: {{ textInput }}</div>
+  <input type="text" v-model="textInput"> -->
+
+
+  <div>Count: {{ props.count }}</div>
+  <button @click="onIncrease">Increase</button>
+
 </template>
 
 <style>

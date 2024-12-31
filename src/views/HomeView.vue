@@ -1,9 +1,15 @@
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+import { ref } from "vue";
+import TheWelcome from "../components/TheWelcome.vue";
+
+const count = ref(10);
+const handleIncrease = (value) => {
+  count.value = count.value + value;
+};
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <TheWelcome :count="count" @handle-increase="handleIncrease" />
   </main>
 </template>
